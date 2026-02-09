@@ -1,0 +1,452 @@
+@import 'tailwindcss';
+@import 'tw-animate-css';
+
+@custom-variant dark (&:is(.dark *));
+
+:root {
+  /* Dark moody theme - warm amber accent on deep blacks */
+  --background: oklch(0.08 0.01 30);
+  --foreground: oklch(0.95 0.01 80);
+  --card: oklch(0.12 0.01 30);
+  --card-foreground: oklch(0.95 0.01 80);
+  --popover: oklch(0.1 0.01 30);
+  --popover-foreground: oklch(0.95 0.01 80);
+  --primary: oklch(0.75 0.12 60);
+  --primary-foreground: oklch(0.08 0.01 30);
+  --secondary: oklch(0.18 0.02 30);
+  --secondary-foreground: oklch(0.85 0.02 60);
+  --muted: oklch(0.2 0.01 30);
+  --muted-foreground: oklch(0.6 0.02 60);
+  --accent: oklch(0.75 0.12 60);
+  --accent-foreground: oklch(0.08 0.01 30);
+  --destructive: oklch(0.577 0.245 27.325);
+  --destructive-foreground: oklch(0.577 0.245 27.325);
+  --border: oklch(0.25 0.02 30);
+  --input: oklch(0.18 0.02 30);
+  --ring: oklch(0.75 0.12 60);
+  --chart-1: oklch(0.75 0.12 60);
+  --chart-2: oklch(0.6 0.118 184.704);
+  --chart-3: oklch(0.398 0.07 227.392);
+  --chart-4: oklch(0.828 0.189 84.429);
+  --chart-5: oklch(0.769 0.188 70.08);
+  --radius: 0rem;
+  --sidebar: oklch(0.1 0.01 30);
+  --sidebar-foreground: oklch(0.95 0.01 80);
+  --sidebar-primary: oklch(0.75 0.12 60);
+  --sidebar-primary-foreground: oklch(0.08 0.01 30);
+  --sidebar-accent: oklch(0.18 0.02 30);
+  --sidebar-accent-foreground: oklch(0.85 0.02 60);
+  --sidebar-border: oklch(0.25 0.02 30);
+  --sidebar-ring: oklch(0.75 0.12 60);
+  /* Global scrollbar – fallback when no theme */
+  --scrollbar-track: oklch(0 0 0 / 0.04);
+  --scrollbar-thumb: #5D4037;
+  --scrollbar-thumb-hover: #C6A769;
+  --scrollbar-thumb-active: #2E7D32;
+  --scrollbar-thumb-shadow: 0 1px 3px rgba(62, 39, 35, 0.2);
+  --scrollbar-width-vertical: 10px;
+  --scrollbar-width-horizontal: 10px;
+}
+
+.dark {
+  --background: oklch(0.08 0.01 30);
+  --foreground: oklch(0.95 0.01 80);
+  --card: oklch(0.12 0.01 30);
+  --card-foreground: oklch(0.95 0.01 80);
+  --popover: oklch(0.1 0.01 30);
+  --popover-foreground: oklch(0.95 0.01 80);
+  --primary: oklch(0.75 0.12 60);
+  --primary-foreground: oklch(0.08 0.01 30);
+  --secondary: oklch(0.18 0.02 30);
+  --secondary-foreground: oklch(0.85 0.02 60);
+  --muted: oklch(0.2 0.01 30);
+  --muted-foreground: oklch(0.6 0.02 60);
+  --accent: oklch(0.75 0.12 60);
+  --accent-foreground: oklch(0.08 0.01 30);
+  --destructive: oklch(0.396 0.141 25.723);
+  --destructive-foreground: oklch(0.637 0.237 25.331);
+  --border: oklch(0.25 0.02 30);
+  --input: oklch(0.18 0.02 30);
+  --ring: oklch(0.75 0.12 60);
+  --chart-1: oklch(0.75 0.12 60);
+  --chart-2: oklch(0.696 0.17 162.48);
+  --chart-3: oklch(0.769 0.188 70.08);
+  --chart-4: oklch(0.627 0.265 303.9);
+  --chart-5: oklch(0.645 0.246 16.439);
+  --sidebar: oklch(0.1 0.01 30);
+  --sidebar-foreground: oklch(0.95 0.01 80);
+  --sidebar-primary: oklch(0.75 0.12 60);
+  --sidebar-primary-foreground: oklch(0.08 0.01 30);
+  --sidebar-accent: oklch(0.18 0.02 30);
+  --sidebar-accent-foreground: oklch(0.85 0.02 60);
+  --sidebar-border: oklch(0.25 0.02 30);
+  --sidebar-ring: oklch(0.75 0.12 60);
+  --scrollbar-track: oklch(0 0 0 / 0.06);
+  --scrollbar-thumb: oklch(0.45 0.05 40);
+  --scrollbar-thumb-hover: oklch(0.65 0.1 70);
+  --scrollbar-thumb-active: oklch(0.5 0.12 145);
+  --scrollbar-thumb-shadow: 0 1px 3px oklch(0 0 0 / 0.3);
+  --scrollbar-width-vertical: 10px;
+  --scrollbar-width-horizontal: 10px;
+}
+
+@theme inline {
+  --font-sans: 'Inter', 'Inter Fallback', sans-serif;
+  --font-serif: 'Playfair Display', 'Georgia', serif;
+  --font-mono: 'Geist Mono', 'Geist Mono Fallback';
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+  --color-chart-1: var(--chart-1);
+  --color-chart-2: var(--chart-2);
+  --color-chart-3: var(--chart-3);
+  --color-chart-4: var(--chart-4);
+  --color-chart-5: var(--chart-5);
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+  --color-sidebar: var(--sidebar);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-ring: var(--sidebar-ring);
+}
+
+.shadow-dashboard {
+  box-shadow: 0 4px 24px -4px oklch(0 0 0 / 0.25);
+}
+
+/* BIGO Luxury Café Dashboard Theme – Primary #3B2314, Cream #F8F3ED, Gold #C89B6D, Nature Green #7A9E7E */
+[data-theme="bigo-dashboard"] {
+  --background: #F8F3ED;
+  --foreground: #1A1A1A;
+  --card: #FFFFFF;
+  --card-foreground: #1A1A1A;
+  --popover: #FFFFFF;
+  --popover-foreground: #1A1A1A;
+  --primary: #3B2314;
+  --primary-foreground: #F8F3ED;
+  --secondary: #E8DFD5;
+  --secondary-foreground: #1A1A1A;
+  --muted: #E8DFD5;
+  --muted-foreground: #5C4A3D;
+  --accent: #C89B6D;
+  --accent-foreground: #1A1A1A;
+  --destructive: #B85C5C;
+  --destructive-foreground: #FFFFFF;
+  --border: #D4C4B5;
+  --input: #D4C4B5;
+  --ring: #C89B6D;
+  --radius: 1rem;
+  --sidebar: #3B2314;
+  --sidebar-foreground: #F8F3ED;
+  --sidebar-primary: #C89B6D;
+  --sidebar-primary-foreground: #1A1A1A;
+  --sidebar-accent: #5C3D2E;
+  --sidebar-accent-foreground: #F8F3ED;
+  --sidebar-border: #4A2E1F;
+  --sidebar-ring: #C89B6D;
+  --bigo-gold: #C89B6D;
+  --bigo-gold-muted: #A37B4A;
+  --bigo-nature-green: #7A9E7E;
+  --bigo-rose: #B85C5C;
+  --bigo-rose-soft: #E8A9A9;
+  --scrollbar-track: rgba(212, 196, 181, 0.25);
+  --scrollbar-thumb: #5C3D2E;
+  --scrollbar-thumb-hover: #C89B6D;
+  --scrollbar-thumb-active: #7A9E7E;
+  --scrollbar-thumb-shadow: 0 1px 3px rgba(59, 35, 20, 0.25);
+  --scrollbar-width-vertical: 10px;
+  --scrollbar-width-horizontal: 10px;
+}
+
+/* Luxury UI utilities */
+.card-luxury {
+  border-radius: var(--radius);
+  box-shadow: 0 4px 24px -4px rgb(59 35 20 / 0.08), 0 8px 32px -8px rgb(59 35 20 / 0.06);
+  transition: box-shadow 0.3s ease, transform 0.2s ease;
+}
+.card-luxury:hover {
+  box-shadow: 0 8px 32px -4px rgb(59 35 20 / 0.12), 0 16px 48px -8px rgb(59 35 20 / 0.08);
+}
+.glass-panel {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 196, 181, 0.5);
+  border-radius: var(--radius);
+}
+.transition-luxury {
+  transition-duration: 0.3s;
+  transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+[data-theme="bigo-dashboard"] .shadow-dashboard {
+  box-shadow: 0 4px 24px -4px rgb(59 35 20 / 0.08), 0 8px 32px -8px rgb(59 35 20 / 0.06);
+}
+
+[data-theme="bigo-dashboard"] .shadow-dashboard:hover {
+  box-shadow: 0 8px 32px -4px rgb(59 35 20 / 0.12), 0 16px 48px -8px rgb(59 35 20 / 0.08);
+}
+
+/* BIGO Cake Builder – Luxury Bakery (Dark Chocolate #3E2723, Cream Beige #F5E6CA, Soft Gold #C8A96A, Forest Green #2E5E4E) */
+[data-theme="bigo-cake-builder"] {
+  --cb-chocolate: #3E2723;
+  --cb-cream: #F5E6CA;
+  --cb-gold: #C8A96A;
+  --cb-forest: #2E5E4E;
+  --background: #FFFFFF;
+  --foreground: #3E2723;
+  --card: #FFFFFF;
+  --card-foreground: #3E2723;
+  --primary: #3E2723;
+  --primary-foreground: #F5E6CA;
+  --secondary: #F5E6CA;
+  --secondary-foreground: #3E2723;
+  --muted: #F0E6D8;
+  --muted-foreground: #5D4E47;
+  --accent: #C8A96A;
+  --accent-foreground: #3E2723;
+  --border: #E8DCC8;
+  --input: #E8DCC8;
+  --ring: #C8A96A;
+  --radius: 1rem;
+  --scrollbar-track: rgba(232, 220, 200, 0.4);
+  --scrollbar-thumb: #5D4037;
+  --scrollbar-thumb-hover: #C8A96A;
+  --scrollbar-thumb-active: #2E5E4E;
+  --scrollbar-thumb-shadow: 0 1px 3px rgba(62, 39, 35, 0.2);
+  --scrollbar-width-vertical: 10px;
+  --scrollbar-width-horizontal: 10px;
+}
+[data-theme="bigo-cake-builder"] .card-luxury {
+  box-shadow: 0 4px 20px -4px rgb(62 39 35 / 0.08), 0 8px 28px -8px rgb(62 39 35 / 0.06);
+}
+[data-theme="bigo-cake-builder"] .glass-panel {
+  background: rgba(245, 230, 202, 0.85);
+  border-color: rgba(200, 169, 106, 0.3);
+}
+
+/* BIGO Admin Dashboard Theme - luxury bakery SaaS */
+[data-theme="bigo-admin"] {
+  --background: #F8F3ED;
+  --foreground: #1A1A1A;
+  --card: #FFFFFF;
+  --card-foreground: #1A1A1A;
+  --popover: #FFFFFF;
+  --popover-foreground: #1A1A1A;
+  --primary: #3B2314;
+  --primary-foreground: #F8F3ED;
+  --secondary: #6F4E37;
+  --secondary-foreground: #F8F3ED;
+  --muted: #E8DFD5;
+  --muted-foreground: #5C4A3D;
+  --accent: #C89B6D;
+  --accent-foreground: #1A1A1A;
+  --destructive: #B85C5C;
+  --destructive-foreground: #FFFFFF;
+  --border: #D4C4B5;
+  --input: #D4C4B5;
+  --ring: #C89B6D;
+  --radius: 0.75rem;
+  --sidebar: #3B2314;
+  --sidebar-foreground: #F8F3ED;
+  --sidebar-primary: #C89B6D;
+  --sidebar-primary-foreground: #1A1A1A;
+  --sidebar-accent: #5C3D2E;
+  --sidebar-accent-foreground: #F8F3ED;
+  --sidebar-border: #4A2E1F;
+  --sidebar-ring: #C89B6D;
+  --scrollbar-track: rgba(212, 196, 181, 0.3);
+  --scrollbar-thumb: #5C3D2E;
+  --scrollbar-thumb-hover: #C89B6D;
+  --scrollbar-thumb-active: #7A9E7E;
+  --scrollbar-thumb-shadow: 0 1px 3px rgba(59, 35, 20, 0.25);
+  --scrollbar-width-vertical: 10px;
+  --scrollbar-width-horizontal: 10px;
+}
+
+[data-theme="bigo-admin"] .shadow-dashboard {
+  box-shadow: 0 4px 24px -4px rgb(59 35 20 / 0.08);
+}
+
+/* BIGO Admin Login – luxury café theme (Ivory Cream, Coffee Brown, Forest Green, Gold) */
+[data-theme="bigo-admin-login"] {
+  --background: #F6F1EB;
+  --foreground: #3E2723;
+  --card: rgba(255, 255, 255, 0.65);
+  --card-foreground: #3E2723;
+  --popover: #FFFFFF;
+  --popover-foreground: #3E2723;
+  --primary: #5D4037;
+  --primary-foreground: #F6F1EB;
+  --secondary: #A5D6A7;
+  --secondary-foreground: #2E7D32;
+  --muted: #EFE7DE;
+  --muted-foreground: #5D4037;
+  --accent: #2E7D32;
+  --accent-foreground: #F6F1EB;
+  --destructive: #8B0000;
+  --destructive-foreground: #FFFFFF;
+  --border: rgba(62, 39, 35, 0.2);
+  --input: rgba(62, 39, 35, 0.25);
+  --ring: #2E7D32;
+  --radius: 1.5rem;
+  --luxury-gold: #C6A769;
+  --luxury-mocha: #5D4037;
+  --luxury-dark-coffee: #3E2723;
+  --luxury-forest: #2E7D32;
+  --luxury-sage: #A5D6A7;
+  --luxury-cream: #F6F1EB;
+  --luxury-beige: #EFE7DE;
+  --scrollbar-track: rgba(62, 39, 35, 0.06);
+  --scrollbar-thumb: #5D4037;
+  --scrollbar-thumb-hover: #C6A769;
+  --scrollbar-thumb-active: #2E7D32;
+  --scrollbar-thumb-shadow: 0 1px 3px rgba(62, 39, 35, 0.2);
+  --scrollbar-width-vertical: 10px;
+  --scrollbar-width-horizontal: 10px;
+}
+
+/* ========== Global luxury scrollbar (BIGO) ========== */
+*,
+html {
+  scrollbar-width: thin;
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+*::-webkit-scrollbar,
+html::-webkit-scrollbar {
+  width: var(--scrollbar-width-vertical);
+  height: var(--scrollbar-width-horizontal);
+}
+
+*::-webkit-scrollbar-track,
+html::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+*::-webkit-scrollbar-thumb,
+html::-webkit-scrollbar-thumb {
+  background: var(--scrollbar-thumb);
+  border-radius: 9999px;
+  box-shadow: var(--scrollbar-thumb-shadow);
+  transition: background 250ms ease, box-shadow 250ms ease;
+}
+
+*::-webkit-scrollbar-thumb:hover,
+html::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+*::-webkit-scrollbar-thumb:active,
+html::-webkit-scrollbar-thumb:active {
+  background: var(--scrollbar-thumb-active);
+  box-shadow: 0 0 0 2px var(--scrollbar-thumb-active);
+}
+
+@media (max-width: 1024px) {
+  :root,
+  .dark,
+  [data-theme="bigo-dashboard"],
+  [data-theme="bigo-admin"],
+  [data-theme="bigo-admin-login"],
+  [data-theme="bigo-cake-builder"] {
+    --scrollbar-width-vertical: 8px;
+    --scrollbar-width-horizontal: 8px;
+  }
+}
+
+@media (max-width: 768px) {
+  :root,
+  .dark,
+  [data-theme="bigo-dashboard"],
+  [data-theme="bigo-admin"],
+  [data-theme="bigo-admin-login"],
+  [data-theme="bigo-cake-builder"] {
+    --scrollbar-width-vertical: 6px;
+    --scrollbar-width-horizontal: 6px;
+  }
+}
+
+/* Radix ScrollArea – match global luxury scrollbar */
+[data-slot="scroll-area-scrollbar"] {
+  width: var(--scrollbar-width-vertical) !important;
+  min-width: var(--scrollbar-width-vertical);
+  background: var(--scrollbar-track);
+  border-radius: 9999px;
+  border: none;
+}
+
+[data-slot="scroll-area-scrollbar"][data-orientation="horizontal"] {
+  width: auto !important;
+  height: var(--scrollbar-width-horizontal) !important;
+  min-height: var(--scrollbar-width-horizontal);
+}
+
+[data-slot="scroll-area-thumb"] {
+  background: var(--scrollbar-thumb) !important;
+  border-radius: 9999px;
+  box-shadow: var(--scrollbar-thumb-shadow);
+  transition: background 250ms ease, box-shadow 250ms ease;
+}
+
+[data-slot="scroll-area-thumb"]:hover {
+  background: var(--scrollbar-thumb-hover) !important;
+}
+
+[data-slot="scroll-area-thumb"]:active {
+  background: var(--scrollbar-thumb-active) !important;
+  box-shadow: 0 0 0 2px var(--scrollbar-thumb-active);
+}
+
+/* Notification dropdown scroll area – behavior only; scrollbar uses global luxury styling */
+.notification-dropdown-scroll {
+  max-height: 20rem;
+  overflow-y: auto;
+  overflow-x: hidden;
+  scroll-behavior: smooth;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+  padding-right: 2px;
+}
+
+/* Reduced motion: disable hover expansion and keep simple color transition only */
+@media (prefers-reduced-motion: reduce) {
+  *::-webkit-scrollbar-thumb,
+  html::-webkit-scrollbar-thumb {
+    transition: background 250ms ease;
+  }
+  [data-slot="scroll-area-thumb"] {
+    transition: background 250ms ease;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
