@@ -1,0 +1,6 @@
+export { OccupancyPredictionChart } from "./OccupancyPredictionChart"
+export { FloorHeatMap } from "./FloorHeatMap"
+export { PeakHourCard } from "./PeakHourCard"
+export { VIPDemandWidget } from "./VIPDemandWidget"
+export { ConferenceUsageWidget } from "./ConferenceUsageWidget"
+export { SmartBookingSuggestionPanel } from "./SmartBookingSuggestionPanel"
