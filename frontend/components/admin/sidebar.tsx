@@ -2,7 +2,6 @@
 
 import Link from "next/link"
 import Image from "next/image"
-import { usePathname } from "next/navigation"
 import { User } from "@supabase/supabase-js"
 import { motion, AnimatePresence } from "framer-motion"
 import {
@@ -25,7 +24,6 @@ import {
   Cake,
 } from "lucide-react"
 import { useState } from "react"
-import { cn } from "@/lib/utils"
 
 interface Profile {
   id: string
@@ -59,7 +57,6 @@ const navItems = [
 ]
 
 export function AdminSidebar({ profile, mobileOpen: controlledMobileOpen, onMobileClose }: AdminSidebarProps) {
-  const pathname = usePathname()
   const [internalMobileOpen, setInternalMobileOpen] = useState(false)
   const isControlled = controlledMobileOpen !== undefined && onMobileClose !== undefined
   const mobileOpen = isControlled ? controlledMobileOpen : internalMobileOpen
@@ -162,86 +159,6 @@ export function AdminSidebar({ profile, mobileOpen: controlledMobileOpen, onMobi
           </motion.div>
         )}
       </AnimatePresence>
-
-      {/* Desktop: left sidebar panel with icons */}
-      <aside
-        className={cn(
-          "hidden lg:flex flex-col w-64 bg-sidebar border-r border-sidebar-border flex-shrink-0"
-        )}
-      >
-        <div className="p-6 border-b border-sidebar-border">
-          <Link href="/admin" className="relative group flex items-center gap-3">
-            <Image
-              src="/bigo-logo.png"
-              alt="BIGO"
-              width={40}
-              height={40}
-              className="object-contain"
-            />
-            <div>
-              <span className="font-serif text-xl text-sidebar-foreground tracking-wider block">BIGO</span>
-              <span className="text-xs text-sidebar-primary flex items-center gap-1">
-                <Shield className="w-3 h-3" /> Admin
-              </span>
-            </div>
-            <span className="absolute -bottom-1 left-0 w-0 h-px bg-sidebar-primary transition-all duration-300 group-hover:w-full" />
-          </Link>
-        </div>
-
-        <div className="p-6 border-b border-sidebar-border">
-          <p className="text-sm text-sidebar-foreground/70">Administrator</p>
-          <p className="text-sidebar-foreground font-medium truncate">
-            {profile?.full_name || "Admin"}
-          </p>
-        </div>
-
-        <nav className="flex-1 p-4 space-y-1 overflow-y-auto">
-          {navItems.map((item, index) => {
-            const isActive =
-              pathname === item.href ||
-              (item.href !== "/admin" && pathname.startsWith(item.href))
-            return (
-              <motion.div
-                key={item.href}
-                initial={{ opacity: 0, x: -16 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{
-                  duration: 0.4,
-                  delay: index * 0.04,
-                  ease: [0.22, 1, 0.36, 1],
-                }}
-              >
-                <Link
-                  href={item.href}
-                  className={cn(
-                    "relative group flex items-center gap-3 px-4 py-3 rounded-xl transition-all duration-300",
-                    isActive
-                      ? "bg-sidebar-accent text-sidebar-foreground border-l-2 border-sidebar-primary"
-                      : "text-sidebar-foreground/80 hover:bg-sidebar-accent/50 hover:text-sidebar-primary"
-                  )}
-                >
-                  <item.icon className="w-5 h-5 shrink-0 transition-colors duration-300 group-hover:text-sidebar-primary" />
-                  <span className="text-sm transition-colors duration-300">{item.label}</span>
-                  {!isActive && (
-                    <span className="absolute bottom-2 left-4 right-4 h-px bg-sidebar-primary scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100" />
-                  )}
-                </Link>
-              </motion.div>
-            )
-          })}
-        </nav>
-
-        <div className="p-4 border-t border-sidebar-border">
-          <Link
-            href="/"
-            className="relative group flex items-center gap-3 px-4 py-3 text-sidebar-foreground/80 hover:text-sidebar-primary hover:bg-sidebar-accent/30 rounded-xl transition-all duration-300"
-          >
-            <Coffee className="w-5 h-5 shrink-0 transition-colors duration-300 group-hover:text-sidebar-primary" />
-            <span>Back to Site</span>
-            <span className="absolute bottom-2 left-4 right-4 h-px bg-sidebar-primary scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100" />
-          </Link>
-        </div>
-      </aside>
     </>
   )
 }

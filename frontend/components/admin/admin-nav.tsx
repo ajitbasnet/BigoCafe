@@ -84,37 +84,38 @@ export function AdminNav({ user, profile, onMenuClick }: AdminNavProps) {
           : "bg-background/80 backdrop-blur-sm py-5"
       }`}
     >
-      <nav className="w-full max-w-[100vw] pl-3 pr-2 lg:pl-4 lg:pr-4 flex items-center justify-between min-h-[4rem] min-w-0">
-        <div className="flex items-center gap-4 lg:gap-6 min-w-0 overflow-x-auto">
+      <nav className="w-full max-w-[100vw] px-4 lg:px-6 flex items-center justify-between min-h-[4rem] min-w-0 gap-4">
+        <div className="flex items-center min-w-0 flex-1 overflow-x-auto overflow-y-hidden py-1 scrollbar-thin">
+          <div className="flex items-center gap-3 lg:gap-4 shrink-0">
           <Link
             href="/admin"
-            className="relative group flex items-center gap-2 py-2 pr-2 rounded-xl text-foreground hover:bg-muted/50 transition-colors duration-300 shrink-0"
+            className="relative group flex items-center gap-2 py-2 pr-1 rounded-xl text-foreground hover:bg-muted/50 transition-colors duration-300 shrink-0"
           >
             <Image
               src="/bigo-logo.png"
               alt="BIGO"
-              width={36}
-              height={36}
+              width={34}
+              height={34}
               className="object-contain"
             />
-            <span className="font-serif text-xl lg:text-2xl tracking-wider whitespace-nowrap">
+            <span className="font-serif text-lg lg:text-xl tracking-wider whitespace-nowrap">
               BIGO
             </span>
             <span className="absolute -bottom-0.5 left-2 right-2 h-px bg-primary/30 scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100" />
           </Link>
 
           {/* Desktop Navigation */}
-          <ul className="hidden lg:flex items-center gap-5 lg:gap-7 shrink-0">
+          <ul className="hidden lg:flex items-center gap-3 lg:gap-4 shrink-0 flex-nowrap">
           {adminNavLinks.map((link) => {
             const isOverview = link.href === "/admin" && link.label === "Overview"
             const isActive = isOverview
               ? pathname === "/admin"
               : pathname === link.href || (link.href !== "/admin" && pathname.startsWith(link.href.split("?")[0]))
             return (
-              <li key={link.href + link.label} className="flex items-center">
+              <li key={link.href + link.label} className="flex items-center shrink-0">
                 <Link
                   href={link.href}
-                  className={`relative group flex items-center justify-center min-h-[2.25rem] py-2 px-2 text-sm uppercase tracking-widest leading-tight text-center transition-colors duration-300 ${
+                  className={`relative group flex items-center justify-center min-h-[2rem] py-1.5 px-1.5 text-xs lg:text-sm uppercase tracking-widest leading-tight text-center transition-colors duration-300 whitespace-nowrap ${
                     isActive
                       ? "text-foreground"
                       : "text-muted-foreground hover:text-foreground"
@@ -129,7 +130,7 @@ export function AdminNav({ user, profile, onMenuClick }: AdminNavProps) {
           </ul>
 
           {/* Notification bell */}
-          <div className="hidden lg:flex items-center shrink-0 ml-4">
+          <div className="hidden lg:flex items-center shrink-0 ml-2">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button
@@ -173,8 +174,8 @@ export function AdminNav({ user, profile, onMenuClick }: AdminNavProps) {
             </DropdownMenu>
           </div>
 
-          {/* Admin profile next to bell */}
-          <div className="hidden lg:flex items-center shrink-0 ml-2">
+          {/* Admin profile - next to bell */}
+          <div className="hidden lg:flex items-center shrink-0 ml-1">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
@@ -192,19 +193,19 @@ export function AdminNav({ user, profile, onMenuClick }: AdminNavProps) {
                   <span className="absolute -bottom-0.5 left-2 right-2 h-px bg-primary/30 scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100" />
                 </Button>
               </DropdownMenuTrigger>
-            <DropdownMenuContent
-              data-theme="bigo-admin"
-              align="end"
-              sideOffset={8}
-              className="w-60 rounded-2xl border-border bg-background shadow-dashboard p-3"
-            >
-              <div className="px-3 py-3.5 border-b border-border">
-                <p className="text-sm font-semibold text-foreground">
-                  {profile?.full_name || "Admin"}
-                </p>
-                <p className="text-xs text-muted-foreground mt-0.5">{user.email}</p>
-              </div>
-              <div className="pt-1.5">
+              <DropdownMenuContent
+                data-theme="bigo-admin"
+                align="end"
+                sideOffset={8}
+                className="w-60 rounded-2xl border-border bg-background shadow-dashboard p-3"
+              >
+                <div className="px-3 py-3.5 border-b border-border">
+                  <p className="text-sm font-semibold text-foreground">
+                    {profile?.full_name || "Admin"}
+                  </p>
+                  <p className="text-xs text-muted-foreground mt-0.5">{user.email}</p>
+                </div>
+                <div className="pt-1.5">
               <DropdownMenuItem
                 onClick={() => router.push("/admin/settings")}
                 className="cursor-pointer rounded-xl py-2.5 px-3 focus:bg-muted transition-colors duration-200 [&_svg]:text-muted-foreground"
@@ -223,6 +224,7 @@ export function AdminNav({ user, profile, onMenuClick }: AdminNavProps) {
               </div>
             </DropdownMenuContent>
           </DropdownMenu>
+          </div>
           </div>
         </div>
 
