@@ -44,6 +44,7 @@ const dashboardNavLinks = [
   { href: "/dashboard/seasonal", label: "Seasonal" },
   { href: "/dashboard/orders", label: "Orders" },
   { href: "/dashboard/rewards", label: "Rewards" },
+  { href: "/dashboard/live-events", label: "Live Events" },
 ]
 
 export function DashboardNav({ user, profile, onMenuClick }: DashboardNavProps) {
@@ -82,10 +83,10 @@ export function DashboardNav({ user, profile, onMenuClick }: DashboardNavProps) 
           : "bg-background/80 backdrop-blur-sm py-4"
       }`}
     >
-      <nav className="container mx-auto px-6 lg:px-12 flex items-center justify-between">
+      <nav className="container mx-auto px-6 lg:px-12 flex items-center justify-between gap-6 lg:gap-8">
         <Link
           href="/dashboard"
-          className="relative group flex items-center gap-2 py-2 px-2 -mx-2 rounded-xl text-foreground hover:bg-muted/50 transition-colors duration-300"
+          className="relative group flex items-center gap-2 py-2 px-3 -ml-2 rounded-xl text-foreground hover:bg-muted/50 transition-colors duration-300 shrink-0"
         >
           <Image
             src="/bigo-logo.png"
@@ -101,7 +102,7 @@ export function DashboardNav({ user, profile, onMenuClick }: DashboardNavProps) 
         </Link>
 
         {/* Desktop Navigation - same underline hover as home */}
-        <ul className="hidden lg:flex items-center gap-8">
+        <ul className="hidden lg:flex items-center gap-6 lg:gap-8">
           {dashboardNavLinks.map((link) => {
             const isActive =
               pathname === link.href ||
@@ -110,7 +111,7 @@ export function DashboardNav({ user, profile, onMenuClick }: DashboardNavProps) 
               <li key={link.href}>
                 <Link
                   href={link.href}
-                  className={`relative group text-sm uppercase tracking-widest transition-colors duration-300 ${
+                  className={`relative group block py-2 px-2 text-sm uppercase tracking-widest transition-colors duration-300 ${
                     isActive
                       ? "text-foreground"
                       : "text-muted-foreground hover:text-foreground"
@@ -124,7 +125,7 @@ export function DashboardNav({ user, profile, onMenuClick }: DashboardNavProps) 
           })}
         </ul>
 
-        <div className="hidden lg:flex items-center gap-2">
+        <div className="hidden lg:flex items-center gap-4">
           <CartLink />
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
@@ -232,10 +233,10 @@ export function DashboardNav({ user, profile, onMenuClick }: DashboardNavProps) 
           {/* Back to Site - same fill hover as home "Order Now" */}
           <Link
             href="/"
-            className="relative overflow-hidden px-6 py-3 border border-primary text-primary text-sm uppercase tracking-widest transition-all duration-300 hover:text-primary-foreground group"
+            className="relative overflow-hidden inline-flex items-center justify-center min-w-[180px] px-8 py-3 border border-primary text-primary text-sm font-medium uppercase tracking-widest transition-all duration-300 hover:text-primary-foreground group"
           >
             <span className="relative z-10">Back to Site</span>
-            <span className="absolute inset-0 bg-primary transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100" />
+            <span className="absolute inset-0 z-0 bg-primary transform scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100" />
           </Link>
         </div>
 

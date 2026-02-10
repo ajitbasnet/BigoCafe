@@ -19,7 +19,6 @@ import {
   CalendarCheck,
   Users,
   Cake,
-  Wine,
   ShieldAlert,
   Music
 } from "lucide-react"
@@ -48,7 +47,6 @@ const navItems = [
   { href: "/dashboard/meeting-rooms", icon: Users, label: "Meeting Rooms" },
   { href: "/dashboard/menu", icon: UtensilsCrossed, label: "Menu" },
   { href: "/dashboard/order-cakes", icon: Cake, label: "Order Cakes" },
-  { href: "/dashboard/customize-drinks", icon: Wine, label: "Customize Drinks" },
   { href: "/dashboard/allergy-preferences", icon: ShieldAlert, label: "Allergy Preferences" },
   { href: "/dashboard/live-events", icon: Music, label: "Live Events" },
   { href: "/dashboard/pastry-box", icon: Package, label: "Build Pastry Box" },
@@ -151,13 +149,13 @@ export function DashboardSidebar({
           })}
         </nav>
 
-        {/* Back to Home - underline hover */}
+        {/* Back to Site */}
         <div className="p-4 border-t border-sidebar-border">
           <Link
             href="/"
-            className="relative group flex items-center gap-3 px-4 py-3 text-sidebar-foreground/80 hover:text-sidebar-foreground hover:bg-sidebar-accent/30 rounded-xl transition-colors duration-300"
+            className="relative group flex items-center gap-2.5 min-h-[44px] w-full px-4 py-2.5 text-sm font-medium text-sidebar-foreground/80 hover:text-sidebar-foreground hover:bg-sidebar-accent/30 rounded-xl transition-colors duration-300"
           >
-            <Coffee className="w-5 h-5" />
+            <Coffee className="w-4 h-4 shrink-0" />
             <span>Back to Site</span>
             <span className="absolute bottom-2 left-4 right-4 h-px bg-sidebar-primary scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100" />
           </Link>

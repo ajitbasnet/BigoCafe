@@ -84,11 +84,11 @@ export function AdminNav({ user, profile, onMenuClick }: AdminNavProps) {
           : "bg-background/80 backdrop-blur-sm py-5"
       }`}
     >
-      <nav className="w-full max-w-[100vw] px-4 pr-2 lg:px-6 lg:pr-4 flex items-center justify-between min-h-[4rem] min-w-0">
-        <div className="flex items-center gap-2 lg:gap-4 min-w-0 overflow-x-auto">
+      <nav className="w-full max-w-[100vw] pl-3 pr-2 lg:pl-4 lg:pr-4 flex items-center justify-between min-h-[4rem] min-w-0">
+        <div className="flex items-center gap-4 lg:gap-6 min-w-0 overflow-x-auto">
           <Link
             href="/admin"
-            className="relative group flex items-center gap-2 py-2 pr-1 rounded-xl text-foreground hover:bg-muted/50 transition-colors duration-300 shrink-0"
+            className="relative group flex items-center gap-2 py-2 pr-2 rounded-xl text-foreground hover:bg-muted/50 transition-colors duration-300 shrink-0"
           >
             <Image
               src="/bigo-logo.png"
@@ -103,8 +103,8 @@ export function AdminNav({ user, profile, onMenuClick }: AdminNavProps) {
             <span className="absolute -bottom-0.5 left-2 right-2 h-px bg-primary/30 scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100" />
           </Link>
 
-          {/* Desktop Navigation - tighter gaps so all links fit */}
-          <ul className="hidden lg:flex items-center gap-3 lg:gap-5 shrink-0">
+          {/* Desktop Navigation */}
+          <ul className="hidden lg:flex items-center gap-5 lg:gap-7 shrink-0">
           {adminNavLinks.map((link) => {
             const isOverview = link.href === "/admin" && link.label === "Overview"
             const isActive = isOverview
@@ -114,7 +114,7 @@ export function AdminNav({ user, profile, onMenuClick }: AdminNavProps) {
               <li key={link.href + link.label} className="flex items-center">
                 <Link
                   href={link.href}
-                  className={`relative group flex items-center justify-center min-h-[2.25rem] py-1.5 px-1 text-sm uppercase tracking-widest leading-tight text-center transition-colors duration-300 ${
+                  className={`relative group flex items-center justify-center min-h-[2.25rem] py-2 px-2 text-sm uppercase tracking-widest leading-tight text-center transition-colors duration-300 ${
                     isActive
                       ? "text-foreground"
                       : "text-muted-foreground hover:text-foreground"
@@ -128,8 +128,8 @@ export function AdminNav({ user, profile, onMenuClick }: AdminNavProps) {
           })}
           </ul>
 
-          {/* Notification bell right after nav links (no gap) */}
-          <div className="hidden lg:flex items-center shrink-0 ml-1">
+          {/* Notification bell */}
+          <div className="hidden lg:flex items-center shrink-0 ml-4">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <button
@@ -174,7 +174,7 @@ export function AdminNav({ user, profile, onMenuClick }: AdminNavProps) {
           </div>
 
           {/* Admin profile next to bell */}
-          <div className="hidden lg:flex items-center shrink-0 ml-1">
+          <div className="hidden lg:flex items-center shrink-0 ml-2">
             <DropdownMenu>
               <DropdownMenuTrigger asChild>
                 <Button
