@@ -74,6 +74,7 @@
   --sidebar-ring: oklch(0.439 0 0);
 }
 
+/* Tailwind v4 theme extension – @theme is valid at build time; ignore IDE "unknown at rule" */
 @theme inline {
   --font-sans: 'Geist', 'Geist Fallback';
   --font-mono: 'Geist Mono', 'Geist Mono Fallback';
