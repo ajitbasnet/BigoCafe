@@ -22,6 +22,7 @@ import {
   Flower2,
   UserCog,
   LayoutGrid,
+  Cake,
 } from "lucide-react"
 import { useState } from "react"
 import { cn } from "@/lib/utils"
@@ -48,6 +49,7 @@ const navItems = [
   { href: "/admin/customization", icon: Sliders, label: "Customization Builder" },
   { href: "/admin/pastry-box", icon: Box, label: "Pastry Box Builder" },
   { href: "/admin/customers", icon: Users, label: "Customers" },
+  { href: "/admin/cake", icon: Cake, label: "Cake" },
   { href: "/admin/rewards", icon: Gift, label: "Rewards" },
   { href: "/admin/seasonal", icon: Flower2, label: "Seasonal Menu" },
   { href: "/admin/staff", icon: UserCog, label: "Staff" },

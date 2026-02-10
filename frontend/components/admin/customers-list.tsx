@@ -132,55 +132,59 @@ export function CustomersList({ customers }: CustomersListProps) {
           transition={{ duration: 0.5, delay: 0.1, ease: [0.22, 1, 0.36, 1] }}
           className="rounded-2xl border border-border bg-card shadow-dashboard overflow-hidden transition-all duration-300 hover:shadow-xl hover:border-primary/20"
         >
-          <Table>
-            <TableHeader>
-              <TableRow className="border-border">
-                <TableHead>Name</TableHead>
-                <TableHead>Email</TableHead>
-                <TableHead className="text-center">Orders</TableHead>
-                <TableHead className="text-right">Reward points</TableHead>
-                <TableHead className="text-center">Favorites</TableHead>
-                <TableHead className="w-[100px]"></TableHead>
-              </TableRow>
-            </TableHeader>
-            <TableBody>
-              {filtered.map((c) => (
-                <TableRow
-                  key={c.id}
-                  className="border-border cursor-pointer hover:bg-muted/50 transition-colors duration-300"
-                  onClick={() => {
-                    setDetailCustomer(c)
-                    setDetailOpen(true)
-                  }}
-                >
-                  <TableCell className="font-medium">{c.name}</TableCell>
-                  <TableCell className="text-muted-foreground">{c.email}</TableCell>
-                  <TableCell className="text-center">{c.orderCount}</TableCell>
-                  <TableCell className="text-right">{c.rewardPointsBalance}</TableCell>
-                  <TableCell className="text-center text-muted-foreground text-sm">
-                    {c.favoriteItems.length > 0
-                      ? c.favoriteItems.slice(0, 2).join(", ") +
-                        (c.favoriteItems.length > 2 ? "…" : "")
-                      : "—"}
-                  </TableCell>
-                  <TableCell onClick={(e) => e.stopPropagation()}>
-                    <Button
-                      variant="ghost"
-                      size="sm"
-                      className="rounded-xl"
-                      onClick={() => {
-                        setDetailCustomer(c)
-                        setDetailOpen(true)
-                      }}
-                    >
-                      <Eye className="w-4 h-4 mr-1" />
-                      View
-                    </Button>
-                  </TableCell>
+          <div className="overflow-x-auto">
+            <Table className="text-sm min-w-[720px]">
+              <TableHeader>
+                <TableRow className="border-border bg-muted/70 hover:bg-muted/70">
+                  <TableHead className="py-3.5 px-4 font-semibold text-foreground">Name</TableHead>
+                  <TableHead className="py-3.5 px-4 font-semibold text-foreground">Email</TableHead>
+                  <TableHead className="py-3.5 px-4 text-center font-semibold text-foreground w-24">Orders</TableHead>
+                  <TableHead className="py-3.5 px-4 text-right font-semibold text-foreground w-28">Reward points</TableHead>
+                  <TableHead className="py-3.5 px-4 text-center font-semibold text-foreground min-w-[140px]">Favorites</TableHead>
+                  <TableHead className="py-3.5 px-4 w-[100px]"></TableHead>
                 </TableRow>
-              ))}
-            </TableBody>
-          </Table>
+              </TableHeader>
+              <TableBody>
+                {filtered.map((c, i) => (
+                  <TableRow
+                    key={c.id}
+                    className={`border-border cursor-pointer transition-colors duration-300 ${
+                      i % 2 === 0 ? "bg-card" : "bg-muted/30"
+                    } hover:bg-muted/60`}
+                    onClick={() => {
+                      setDetailCustomer(c)
+                      setDetailOpen(true)
+                    }}
+                  >
+                    <TableCell className="py-3.5 px-4 font-medium text-foreground">{c.name}</TableCell>
+                    <TableCell className="py-3.5 px-4 text-foreground/90">{c.email}</TableCell>
+                    <TableCell className="py-3.5 px-4 text-center text-foreground tabular-nums">{c.orderCount}</TableCell>
+                    <TableCell className="py-3.5 px-4 text-right text-foreground tabular-nums">{c.rewardPointsBalance}</TableCell>
+                    <TableCell className="py-3.5 px-4 text-center text-foreground/80 min-w-[140px] max-w-[200px] whitespace-normal">
+                      {c.favoriteItems.length > 0
+                        ? c.favoriteItems.slice(0, 3).join(", ") +
+                          (c.favoriteItems.length > 3 ? "…" : "")
+                        : "—"}
+                    </TableCell>
+                    <TableCell className="py-3.5 px-4" onClick={(e) => e.stopPropagation()}>
+                      <Button
+                        variant="ghost"
+                        size="sm"
+                        className="rounded-xl text-foreground hover:bg-primary/10 hover:text-primary"
+                        onClick={() => {
+                          setDetailCustomer(c)
+                          setDetailOpen(true)
+                        }}
+                      >
+                        <Eye className="w-4 h-4 mr-1.5" />
+                        View
+                      </Button>
+                    </TableCell>
+                  </TableRow>
+                ))}
+              </TableBody>
+            </Table>
+          </div>
         </motion.div>
       ) : (
         <motion.div

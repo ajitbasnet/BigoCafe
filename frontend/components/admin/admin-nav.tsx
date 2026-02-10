@@ -39,7 +39,13 @@ const adminNavLinks = [
   { href: "/admin/analytics", label: "Charts" },
   { href: "/admin/top-selling", label: "Top Selling Items" },
   { href: "/admin/reports", label: "Reports" },
+  { href: "/admin/rewards", label: "Rewards" },
+  { href: "/admin/seasonal", label: "Seasonal" },
   { href: "/admin/products", label: "Add Items" },
+  { href: "/admin/customization", label: "Customization" },
+  { href: "/admin/pastry-box", label: "Pastry Box" },
+  { href: "/admin/customers", label: "Customers" },
+  { href: "/admin/cake", label: "Cake" },
 ]
 
 export function AdminNav({ user, profile, onMenuClick }: AdminNavProps) {
@@ -72,115 +78,120 @@ export function AdminNav({ user, profile, onMenuClick }: AdminNavProps) {
       initial={{ y: -100, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5, ease: [0.22, 1, 0.36, 1] }}
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+      className={`fixed top-0 left-0 right-0 z-50 w-full max-w-[100vw] overflow-x-auto transition-all duration-500 ${
         isScrolled
           ? "bg-background/90 backdrop-blur-md py-3 border-b border-border"
-          : "bg-background/80 backdrop-blur-sm py-4"
+          : "bg-background/80 backdrop-blur-sm py-5"
       }`}
     >
-      <nav className="container mx-auto px-6 lg:px-12 flex items-center justify-between">
-        <Link
-          href="/admin"
-          className="relative group flex items-center gap-2 py-2 px-2 -mx-2 rounded-xl text-foreground hover:bg-muted/50 transition-colors duration-300"
-        >
-          <Image
-            src="/bigo-logo.png"
-            alt="BIGO"
-            width={40}
-            height={40}
-            className="object-contain"
-          />
-          <span className="font-serif text-2xl lg:text-3xl tracking-wider">
-            BIGO
-          </span>
-          <span className="absolute -bottom-0.5 left-2 right-2 h-px bg-primary/30 scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100" />
-        </Link>
+      <nav className="w-full max-w-[100vw] px-4 pr-2 lg:px-6 lg:pr-4 flex items-center justify-between min-h-[4rem] min-w-0">
+        <div className="flex items-center gap-2 lg:gap-4 min-w-0 overflow-x-auto">
+          <Link
+            href="/admin"
+            className="relative group flex items-center gap-2 py-2 pr-1 rounded-xl text-foreground hover:bg-muted/50 transition-colors duration-300 shrink-0"
+          >
+            <Image
+              src="/bigo-logo.png"
+              alt="BIGO"
+              width={36}
+              height={36}
+              className="object-contain"
+            />
+            <span className="font-serif text-xl lg:text-2xl tracking-wider whitespace-nowrap">
+              BIGO
+            </span>
+            <span className="absolute -bottom-0.5 left-2 right-2 h-px bg-primary/30 scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100" />
+          </Link>
 
-        {/* Desktop Navigation - same underline hover as dashboard */}
-        <ul className="hidden lg:flex items-center gap-8">
+          {/* Desktop Navigation - tighter gaps so all links fit */}
+          <ul className="hidden lg:flex items-center gap-3 lg:gap-5 shrink-0">
           {adminNavLinks.map((link) => {
             const isOverview = link.href === "/admin" && link.label === "Overview"
             const isActive = isOverview
               ? pathname === "/admin"
               : pathname === link.href || (link.href !== "/admin" && pathname.startsWith(link.href.split("?")[0]))
             return (
-              <li key={link.href + link.label}>
+              <li key={link.href + link.label} className="flex items-center">
                 <Link
                   href={link.href}
-                  className={`relative group text-sm uppercase tracking-widest transition-colors duration-300 ${
+                  className={`relative group flex items-center justify-center min-h-[2.25rem] py-1.5 px-1 text-sm uppercase tracking-widest leading-tight text-center transition-colors duration-300 ${
                     isActive
                       ? "text-foreground"
                       : "text-muted-foreground hover:text-foreground"
                   }`}
                 >
-                  {link.label}
+                  <span className="block">{link.label}</span>
                   <span className="absolute -bottom-1 left-0 w-0 h-px bg-primary transition-all duration-300 group-hover:w-full" />
                 </Link>
               </li>
             )
           })}
-        </ul>
+          </ul>
 
-        <div className="hidden lg:flex items-center gap-2">
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <button
-                type="button"
-                className="relative p-2.5 rounded-xl text-foreground/90 hover:text-primary hover:bg-primary/10 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
-                aria-label="Notifications"
+          {/* Notification bell right after nav links (no gap) */}
+          <div className="hidden lg:flex items-center shrink-0 ml-1">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <button
+                  type="button"
+                  className="relative p-2.5 rounded-xl text-foreground/90 hover:text-primary hover:bg-primary/10 transition-all duration-200 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary focus-visible:ring-offset-2"
+                  aria-label="Notifications"
+                >
+                  <Bell className="w-5 h-5" />
+                  {adminNotifications.some((n) => !n.read) && (
+                    <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-primary pointer-events-none" aria-hidden />
+                  )}
+                </button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent
+                data-theme="bigo-admin"
+                align="end"
+                sideOffset={8}
+                className="w-[360px] rounded-2xl border-border bg-card shadow-dashboard p-0 overflow-hidden"
               >
-                <Bell className="w-5 h-5" />
-                {adminNotifications.some((n) => !n.read) && (
-                  <span className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-primary pointer-events-none" aria-hidden />
-                )}
-              </button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent
-              data-theme="bigo-admin"
-              align="end"
-              sideOffset={8}
-              className="w-[360px] rounded-2xl border-border bg-card shadow-dashboard p-0 overflow-hidden"
-            >
-              <div className="px-4 py-3 border-b border-border">
-                <h3 className="font-semibold text-foreground">Notifications</h3>
-                <p className="text-xs text-muted-foreground mt-0.5">{adminNotifications.length} messages</p>
-              </div>
-              <div className="notification-dropdown-scroll">
-                {adminNotifications.length === 0 ? (
-                  <div className="px-4 py-8 text-center text-sm text-muted-foreground">No notifications yet</div>
-                ) : (
-                  adminNotifications.map((n) => (
-                    <div
-                      key={n.id}
-                      className={`px-4 py-3 border-b border-border/50 last:border-0 hover:bg-muted/50 transition-colors ${!n.read ? "bg-primary/5" : ""}`}
-                    >
-                      <p className="text-sm font-medium text-foreground">{n.title}</p>
-                      <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">{n.message}</p>
-                      <p className="text-xs text-muted-foreground/80 mt-1.5">{n.time}</p>
-                    </div>
-                  ))
-                )}
-              </div>
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                variant="ghost"
-                className="flex items-center gap-3 px-3 py-2 rounded-xl text-foreground hover:bg-muted/60 transition-colors duration-300 relative group"
-              >
-                <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center ring-2 ring-primary/20">
-                  <span className="text-sm font-semibold text-primary">
-                    {initials}
-                  </span>
+                <div className="px-4 py-3 border-b border-border">
+                  <h3 className="font-semibold text-foreground">Notifications</h3>
+                  <p className="text-xs text-muted-foreground mt-0.5">{adminNotifications.length} messages</p>
                 </div>
-                <span className="hidden md:block text-sm font-medium">
-                  {profile?.full_name || user.email || "Admin"}
-                </span>
-                <span className="absolute -bottom-0.5 left-3 right-3 h-px bg-primary/30 scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100" />
-              </Button>
-            </DropdownMenuTrigger>
+                <div className="notification-dropdown-scroll">
+                  {adminNotifications.length === 0 ? (
+                    <div className="px-4 py-8 text-center text-sm text-muted-foreground">No notifications yet</div>
+                  ) : (
+                    adminNotifications.map((n) => (
+                      <div
+                        key={n.id}
+                        className={`px-4 py-3 border-b border-border/50 last:border-0 hover:bg-muted/50 transition-colors ${!n.read ? "bg-primary/5" : ""}`}
+                      >
+                        <p className="text-sm font-medium text-foreground">{n.title}</p>
+                        <p className="text-xs text-muted-foreground mt-0.5 line-clamp-2">{n.message}</p>
+                        <p className="text-xs text-muted-foreground/80 mt-1.5">{n.time}</p>
+                      </div>
+                    ))
+                  )}
+                </div>
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+
+          {/* Admin profile next to bell */}
+          <div className="hidden lg:flex items-center shrink-0 ml-1">
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button
+                  variant="ghost"
+                  className="flex items-center gap-2 px-2.5 py-2 rounded-xl text-foreground hover:bg-muted/60 transition-colors duration-300 relative group"
+                >
+                  <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center ring-2 ring-primary/20 shrink-0">
+                    <span className="text-sm font-semibold text-primary">
+                      {initials}
+                    </span>
+                  </div>
+                  <span className="text-sm font-medium whitespace-nowrap">
+                    {profile?.full_name || user.email || "Admin"}
+                  </span>
+                  <span className="absolute -bottom-0.5 left-2 right-2 h-px bg-primary/30 scale-x-0 origin-left transition-transform duration-300 group-hover:scale-x-100" />
+                </Button>
+              </DropdownMenuTrigger>
             <DropdownMenuContent
               data-theme="bigo-admin"
               align="end"
@@ -212,6 +223,7 @@ export function AdminNav({ user, profile, onMenuClick }: AdminNavProps) {
               </div>
             </DropdownMenuContent>
           </DropdownMenu>
+          </div>
         </div>
 
         {/* Mobile: menu + user */}
